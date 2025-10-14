@@ -1162,3 +1162,37 @@ img {
         margin-top: 1rem;
     }
 }
+
+/* --- 船の画像スタイル --- */
+.boat-image-container {
+    margin-top: 2rem;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.boat-image {
+    max-width: 100%;
+    width: auto;
+    max-height: 400px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    object-fit: cover;
+}
+
+.boat-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* スマホ表示用の船の画像 */
+@media (max-width: 768px) {
+    .boat-image {
+        max-height: 300px;
+    }
+
+    .boat-image-container {
+        padding: 0 0.5rem;
+    }
+}
