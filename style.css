@@ -360,6 +360,25 @@ section {
     transform: translateX(-50%);
 }
 
+/* サブカテゴリースタイル */
+.menu-subcategory {
+    margin-bottom: 2.5rem;
+    padding: 2rem;
+    background-color: #fdfcf9;
+    border-radius: 10px;
+    border-left: 3px solid #d8a05e;
+}
+
+.subcategory-title {
+    font-size: 1.5rem;
+    color: #26160e;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e0ac7e;
+    font-family: 'Shippori Mincho B1', serif;
+    font-weight: 600;
+}
+
 .menu-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
