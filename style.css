@@ -103,43 +103,49 @@ h1, h2, h3, .section-title, .hero-title, .hero-subtitle, .category-title {
 /* ヒーローセクション */
 .hero {
     height: 100vh;
-    background: linear-gradient(rgba(38, 22, 14, 0.6), rgba(38, 22, 14, 0.6)),
-                url('1749861952447.jpg') no-repeat center center / cover;
+    background: linear-gradient(135deg, #f4d03f 0%, #f9e79f 30%, #f8e6a0 50%, #f9e79f 70%, #f4d03f 100%);
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(255,250,205,0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255,235,180,0.3) 0%, transparent 50%),
+        linear-gradient(135deg, #f4d03f 0%, #f9e79f 30%, #f8e6a0 50%, #f9e79f 70%, #f4d03f 100%);
     background-size: cover;
     background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #fff;
+    color: #4a3722;
     position: relative;
 }
 
 .hero-content {
     max-width: 800px;
     padding: 2rem;
-    z-index: 2;
+    padding-top: 120px;
+    z-index: 1001;
 }
 
 .hero-title {
     font-size: 3.5rem;
     margin-bottom: 1.2rem;
-    color: #ffe6bd;
-    text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+    color: #3d2817;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     line-height: 1.3;
 }
 
 .hero-subtitle {
     font-size: 1.4rem;
     margin-bottom: 1.2rem;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    color: #4a3722;
+    text-shadow: none;
     line-height: 1.6;
 }
 
 .hero-description {
     font-size: 1.2rem;
     margin-bottom: 2.5rem;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    color: #5a4732;
+    text-shadow: none;
     line-height: 1.6;
 }
 
@@ -180,14 +186,14 @@ h1, h2, h3, .section-title, .hero-title, .hero-subtitle, .category-title {
 
 .btn-secondary {
     background-color: transparent;
-    color: #fff;
-    border-color: #fff;
+    color: #4a3722;
+    border-color: #8b6f47;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .btn-secondary:hover {
-    background-color: #fff;
-    color: #26160e;
+    background-color: #8b6f47;
+    color: #fff;
     box-shadow: 0 6px 12px rgba(0,0,0,0.18);
 }
 
@@ -357,6 +363,25 @@ section {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
+}
+
+/* サブカテゴリースタイル */
+.menu-subcategory {
+    margin-bottom: 2.5rem;
+    padding: 2rem;
+    background-color: #fdfcf9;
+    border-radius: 10px;
+    border-left: 3px solid #d8a05e;
+}
+
+.subcategory-title {
+    font-size: 1.5rem;
+    color: #26160e;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e0ac7e;
+    font-family: 'Shippori Mincho B1', serif;
+    font-weight: 600;
 }
 
 .menu-grid {
@@ -585,6 +610,13 @@ section {
 .map-link a:hover {
     background-color: #8b4513;
     color: #fff;
+}
+
+/* デスクトップ専用最適化 */
+@media (min-width: 769px) {
+    .hero-content {
+        padding-top: 100px;
+    }
 }
 
 /* レスポンシブ対応 */
@@ -861,28 +893,36 @@ section {
         background-color: #26160e; /* 改善: アクティブ時の色変更 */
     }
     
-    /* ヒーローセクションの表示崩れと重なりを修正する、より堅牢なスタイル */
+    /* ヒーローセクションの表示崩れを根本的に修正する最終版スタイル - モバイル可視性改善 */
     .hero {
-        min-height: 100vh; /* 高さを最低でも画面100%に設定 */
-        height: auto;      /* コンテンツが多ければ自動で高さを伸ばす */
+        min-height: 100vh;
+        height: auto;
         display: flex;
-        align-items: center;     /* 垂直方向中央揃え */
-        justify-content: center; /* 水平方向中央揃え */
-        padding-top: 80px;       /* 固定ヘッダー分の余白を確保 */
-        padding-bottom: 40px;    /* 下部にも適切な余白を確保 */
+        align-items: center; /* ★★★ flex-start → center ヒーローコンテンツを中央配置に戻して固定ヘッダーとの重なりを回避 ★★★ */
+        justify-content: center;
+        /* 親要素のパディングを削除し、中央揃えに専念させる */
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
     
-    /* hero-content自体のpadding-topは不要なのでリセット */
+    /* ヒーローセクションのモバイル表示崩れを修正 */
     .hero-content {
-        padding-top: 0;
-        margin-top: 0;
+        width: 100%; /* 幅を親に合わせる */
+        max-width: 500px; /* ただし最大幅は設定 */
+        padding-top: 180px; /* ★★★★★ ヘッダー+ハンバーガーボタンを確実に避けるため大幅に増加 (120px→180px) ★★★★★ */
+        padding-bottom: 40px; /* 下部の余白 */
+        margin: 0;
     }
     
     /* タイポグラフィの改善 - 読みやすさとスペース効率のバランス */
     .hero-title {
-        font-size: 2.2rem; /* 改善: 2.5rem -> 2.2rem */
-        line-height: 1.2; /* 改善: 行間調整 */
-        margin-bottom: 1rem; /* 改善: 余白調整 */
+        font-size: 1.8rem;
+        line-height: 1.1;
+        margin-bottom: 1rem;
+        z-index: 10;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        color: #3d2817;
+        position: relative;
     }
     
     .hero-subtitle {
@@ -1011,11 +1051,19 @@ section {
 
 @media (max-width: 480px) {
     .hero-title {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+        line-height: 1.1;
+        z-index: 10;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        color: #3d2817;
+        position: relative;
     }
     
     .hero-content {
-        padding: 1rem;
+        padding-top: 180px; /* ★★★ 最重要修正：CSS優先度問題を解決 - padding: 1remが180pxを上書きするのを防ぐ ★★★ */
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-bottom: 1rem;
     }
     
     .about-item {
